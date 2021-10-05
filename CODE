@@ -1,0 +1,66 @@
+import  sys
+class Library:
+    def __init__(self, bookslist):
+        self.availablebooks = bookslist
+
+    def user_name(self):
+        self.ui = input("Please enter your name:")
+        print(f"################ WELCOME {self.ui} TO TB LIBRARY! ##############")
+
+    def display_books(self):  
+        print("These are the books which are currently available... ")
+        for books in self.availablebooks:
+            print(books)
+
+    def add_books(self):
+        print("Enter the name of the book you want to add: ")
+        add_book = input()
+        self.availablebooks.append(add_book)   
+        print(f"your book has been added in the library.")  
+
+    def lend_book(self,lend):
+        lend = input("Enter the name of the book you want to lend: ")
+        if lend in self.availablebooks:
+           print("The book has been lent to you.")
+           self.availablebooks.remove(lend)
+        else:
+            print("Sorry the book is not available right now..")   
+
+    def return_book(self,ret):
+        ret = input("Enter the name of the book you want to return: ")
+        print("Thankyou for returning the book.")
+        self.availablebooks.append(ret)
+
+    def remove_book(self,remove):
+     remove = print(input("Enter the name of the book you want to remove: "))
+     if remove in self.availablebooks:
+      self.availablebooks.remove(remove)    
+
+
+def main():
+    lib = Library(["C++", "Python", "Java", "Harry Potter"])
+
+    done = False
+    while done == False:
+        lib.user_name()
+        print(""" 1. display books
+                  2. Lend books
+                  3. Add books
+                  4. Return books
+                  5. Remove books 
+                  6. Exit
+               """ )
+        choice = int(input("Enter the choice you want: "))
+        if choice == 1:
+             lib.display_books()
+        elif choice == 2:
+            lib.lend_book(Library.lend_book)
+        elif choice == 3:
+            lib.add_books()
+        elif choice == 4:
+            lib.return_book(Library.return_book) 
+        elif choice ==5:
+            lib.remove_book(Library.remove_book)
+        elif choice == 6:
+            sys.exit()          
+main()
